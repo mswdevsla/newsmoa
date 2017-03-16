@@ -1,0 +1,24 @@
+.navbar-toggle{
+    float : left; margin : 8px 0 0 5px;
+}
+body{
+    padding-top: 0 !important;
+}
+.navbar-fixed-bottom, .navbar-fixed-top{
+    position: relative;
+}
+.navbar{
+    margin-bottom: 6px;
+}
+.navbar-default{
+    background-color: #6f5499;
+}
+.navbar-default .navbar-brand{
+    color: #b9b3b3;
+}
+.list-inline>li{
+    align-self: center;
+    font-family: 'NanumGothic';
+    font-size: 13pt;
+    margin-right: 15px;
+}
