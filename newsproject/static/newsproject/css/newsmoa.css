@@ -22,3 +22,9 @@ body{
     font-size: 13pt;
     margin-right: 15px;
 }
+.container-article{
+    margin: 10px 0 10px 0;
+}
+.news_article{
+    margin: 20px 0 20px 0;
+}
