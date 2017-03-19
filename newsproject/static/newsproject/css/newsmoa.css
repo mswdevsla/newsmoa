@@ -22,6 +22,10 @@ body{
     font-size: 13pt;
     margin-right: 15px;
 }
+.list-inline2>li{
+    margin-right:0;
+    padding:5px 10px;
+}
 .container-article{
     margin: 10px 0 10px 0;
     position: relative;
@@ -33,6 +37,8 @@ body{
     box-sizing: border-box;
     vertical-align: middle;
     position: relative;
+    float:left;
+    margin-right:10px;
 }
 .article_content{
     box-sizing: border-box;
