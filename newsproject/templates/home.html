@@ -1,11 +1,6 @@
 {% extends 'layout/layout.html' %}
 {% block body %}
     {{ block.super }}
-    <button type="button" class="btn btn-primary">Primary</button>
-    <button type="button" class="btn btn-success">Success</button>
-    <button type="button" class="btn btn-warning">Warning</button>
-    <button type="button" class="btn btn-danger">Danger</button>
-
     {% for article in content %}
     <div class="container">
         <div class="container-article">
