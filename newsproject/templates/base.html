@@ -62,7 +62,7 @@
           <a class="navmenu-brand" href="#">하루뉴스</a>
           <ul class="nav navmenu-nav">
             <li class="active"><a href="#">로그인</a></li>
-            <li><a href="#">회원가입</a></li>
+            <li><a href="{% url 'user_register' %}">회원가입</a></li>
             <li><a href="#">설정</a></li>
           </ul>
         </nav>
@@ -75,6 +75,14 @@
           </button>
             <a class="navbar-brand" href="#">하루뉴스</a>
         </div>
+
+        <div class="container">
+        <ul class="list-inline">
+            <li>섹션별</li>
+            <li>신문사별</li>
+            <li>추천</li>
+        </ul>
+    </div>
 {#        </div>#}
     {% endblock %}
 {% block script %}

@@ -24,7 +24,18 @@ body{
 }
 .container-article{
     margin: 10px 0 10px 0;
+    position: relative;
 }
 .news_article{
     margin: 20px 0 20px 0;
+}
+.article_image{
+    box-sizing: border-box;
+    vertical-align: middle;
+    position: relative;
+}
+.article_content{
+    box-sizing: border-box;
+    vertical-align: middle;
+    position: relative;
 }
