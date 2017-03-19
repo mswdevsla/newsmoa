@@ -1,0 +1,18 @@
+{% extends 'layout/layout.html' %}
+{% block body %}
+    {{ block.super }}
+
+    <div class="container">
+      <form class="form-signin" method="post">
+      {% csrf_token %}
+        <h2 class="form-signin-heading">로그인</h2>
+        <label for="inputId" class="sr-only">아이디</label>
+        <input type="text" id="inputId" name="user_id" class="form-control" placeholder="Id" required="" autofocus="">
+        <br>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="user_password" class="form-control" placeholder="Password" required="">
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+      </form>
+    </div>
+{% endblock %}
