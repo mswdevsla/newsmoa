@@ -6,4 +6,5 @@ from django.conf.urls import url, include
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^user/', include('newsproject.user.urls')),
+    url(r'^news_component/', include('newsproject.news_component.urls')),
 ]

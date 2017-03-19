@@ -45,3 +45,6 @@ body{
     vertical-align: middle;
     position: relative;
 }
+.form-control{
+    /*display: none;*/
+}
