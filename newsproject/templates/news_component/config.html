@@ -1,35 +1,87 @@
 {% extends 'layout/layout.html' %}
 {% block body %}
     {{ block.super }}
+    <script type="text/javascript">
+    var number = 1;
+    var section = ['스포츠', '정치', '경제'];
+    var news_company = ['중앙일보', '동아일보', '한겨레'];
+    var max_number = 10;
+         function addFields(){
+             // Number of inputs to create
+             // Container <div> where dynamic content will be placed
+             var container = document.getElementById("container");
+             // Append a node with a random text
+             container.appendChild(document.createTextNode((number + 1) + "순위"));
+             // Create an <input> element, set its type and name attributes
+
+             var div = document.createElement("div");
+             div.className = "list-inline";
+             container.appendChild(div);
+             var select = document.createElement("select");
+             select.className="form-control";
+             select.style="width:35%";
+             container.appendChild(select);
+             for (var i=0; i < section.length; i++){
+                 var option = document.createElement("option");
+                 option.text=section[i];
+                 select.appendChild(option);
+             }
+             var select2 = document.createElement("select");
+             select2.className="form-control";
+             select2.style="width:35%";
+             container.appendChild(select2);
+             for (var i=0; i < news_company.length; i++){
+                 var option = document.createElement("option");
+                 option.text=news_company[i];
+                 select2.appendChild(option);
+             }
+             var select3 = document.createElement("select");
+             select3.className="form-control";
+             select3.style="width:20%";
+             container.appendChild(select3);
+             for (var i=0; i < max_number; i++){
+                 var option = document.createElement("option");
+                 option.text=i;
+                 select3.appendChild(option);
+             }
+             // Append a line break
+             container.appendChild(document.createElement("br"));
+             number++
+        }
+    </script>
     <div class="container">
         <div class="list-inline list-inline2 config">
             <h4>뉴스 맞춤 설정</h4>
         </div>
     </div>
-    <div class="container">
-        <div class="list-rank">
-            <h5>1순위</h5>
+    <form method="post">
+    {% csrf_token %}
+        <div class="container">
+        <button type="button" class="btn btn-primary" onClick="addFields();">추가</button>
+            <div class="list-rank">
+                <h5>1순위</h5>
+            </div>
+            <div class="list-inline">
+                <select  class="form-control" style="width:35%">
+                    <option>섹션</option>
+                    <option>스포츠</option>
+                    <option>경제</option>
+                </select>
+                <select  class="form-control" style="width:35%">
+                    <option>신문사</option>
+                    <option>조선일보</option>
+                    <option>동아일보</option>
+                </select>
+                <select  class="form-control" style="width:20%">
+                    <option>개수</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+            </div>
+            <div id="container"></div>
         </div>
-        <div class="list-inline">
-            <select  class="form-control" style="width:35%">
-                <option>섹션</option>
-                <option>스포츠</option>
-                <option>경제</option>
-            </select>
-            <select  class="form-control" style="width:35%">
-                <option>신문사</option>
-                <option>조선일보</option>
-                <option>동아일보</option>
-            </select>
-            <select  class="form-control" style="width:20%">
-                <option>개수</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-            </select>
-            <button type="button" class="btn btn-primary">추가</button>
-        </div>
-    </div>
+    </form>
     <br>
     <br>
     <button type="button" class="btn btn-primary">설정 저장</button>

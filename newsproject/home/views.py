@@ -3,7 +3,7 @@ import feedparser
 # Create your views here.
 
 def home(request):
-    feed = feedparser.parse('http://myhome.chosun.com/rss/www_section_rss.xml')
+    feed = feedparser.parse('http://rss.joins.com/joins_news_list.xml')
     feed = feed.entries
     i = 0
     content = []
