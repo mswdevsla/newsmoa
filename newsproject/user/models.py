@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-from newsproject.news_component.models import NewsCompany, NewsSection
+from newsproject.news_component.models import NewsContent
 
 
 # Create your models here.
@@ -16,7 +16,6 @@ class NewsCustom(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     user_info = models.ForeignKey(UserInfo)
-    news_company = models.ForeignKey(NewsCompany)
-    news_section = models.ForeignKey(NewsSection)
+    news_content = models.ForeignKey(NewsContent)
     how_many = models.IntegerField(default=0)
     priority = models.IntegerField(default=99)

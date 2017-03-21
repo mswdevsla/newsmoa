@@ -3,7 +3,10 @@
     {{ block.super }}
     <script type="text/javascript">
     var number = 1;
-    var section = ['스포츠', '정치', '경제'];
+    var arr_section = [];
+    {% for section in sections %}
+        arr_section.push({{ NewsContent.CHOICES_SECTION.section.news_section }});
+    {% endfor %}
     var news_company = ['중앙일보', '동아일보', '한겨레'];
     var max_number = 10;
          function addFields(){
@@ -21,9 +24,9 @@
              select.className="form-control";
              select.style="width:35%";
              container.appendChild(select);
-             for (var i=0; i < section.length; i++){
+             for (var i=0; i < arr_section.length; i++){
                  var option = document.createElement("option");
-                 option.text=section[i];
+                 option.text=arr_section[i];
                  select.appendChild(option);
              }
              var select2 = document.createElement("select");
