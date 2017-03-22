@@ -2,10 +2,15 @@
 {% block body %}
     {{ block.super }}
     <script type="text/javascript">
+
+    var section_area = document.getElementById('sectionArea');
+    var company_area = document.getElementById('companyArea');
+
+
     var number = 1;
     var arr_section = [];
     {% for section in sections %}
-        arr_section.push({{ NewsContent.CHOICES_SECTION.section.news_section }});
+        arr_section.push('{{ section.get_section_name }}');
     {% endfor %}
     var news_company = ['중앙일보', '동아일보', '한겨레'];
     var max_number = 10;
@@ -65,15 +70,15 @@
                 <h5>1순위</h5>
             </div>
             <div class="list-inline">
-                <select  class="form-control" style="width:35%">
-                    <option>섹션</option>
-                    <option>스포츠</option>
-                    <option>경제</option>
+                <select  class="form-control" style="width:35%" id="sectionArea">
+                    {% for section in sections %}
+                        <option>{{ section.get_section_name }}</option>
+                    {% endfor %}
                 </select>
-                <select  class="form-control" style="width:35%">
-                    <option>신문사</option>
-                    <option>조선일보</option>
-                    <option>동아일보</option>
+                <select  class="form-control" style="width:35%" id="companyArea">
+                    {% for company in companys %}
+                        <option>{{ company.get_company_name }}</option>
+                    {% endfor %}
                 </select>
                 <select  class="form-control" style="width:20%">
                     <option>개수</option>

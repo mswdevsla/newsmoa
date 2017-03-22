@@ -1,6 +1,7 @@
 from django.db import models
 # Create your models here.
 
+
 class NewsContent(models.Model):
     """
     뉴스 신문사들
@@ -51,3 +52,11 @@ class NewsContent(models.Model):
     news_company = models.IntegerField(choices=CHOICES_NEWS)
     xml_address = models.CharField(max_length=255)
     news_section = models.IntegerField(choices=CHOICES_SECTION)
+
+    @property
+    def get_section_name(self):
+        return NewsContent.CHOICES_SECTION[self.news_section][1]
+
+    @property
+    def get_company_name(self):
+        return NewsContent.CHOICES_NEWS[self.news_company][1]

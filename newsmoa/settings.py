@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': '192.168.5.128',
+        'HOST': '10.0.3.30',
         'PORT': '',
     }
 }
@@ -106,6 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = '/user/login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
