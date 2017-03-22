@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.http import HttpResponseRedirect, HttpResponse
+from newsproject.user.models import UserInfo
 # Create your views here.
 
 def register(request):
@@ -10,7 +11,8 @@ def register(request):
             email = request.POST.get('email')
             id = request.POST.get('id')
             password = request.POST.get('password')
-            User.objects.create_user(username=id, email=email, password=password)
+            user = User.objects.create_user(username=id, email=email, password=password)
+            UserInfo.objects.create(user=user, email=email)
             return HttpResponseRedirect('/')
     return render(request, 'user/register.html')
 
@@ -24,7 +26,7 @@ def login(request):
             else:
                 return HttpResponse('<script>alert("Non active user");</script>')
         else:
-            return HttpResponse('<script>alert("Wrong username or password");</script>')
+            return HttpResponse('<script>alert("Wrong username or password");history.back();</script>')
     return render(request, 'user/login.html')
 
 def logout(request):
@@ -32,4 +34,4 @@ def logout(request):
         auth_logout(request)
         return HttpResponseRedirect('/')
     except:
-        return HttpResponse('<script>alert("Some error occured.");</script>')
+        return HttpResponse('<script>alert("Some error occured.");history.back();</script>')

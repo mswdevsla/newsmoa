@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import feedparser
+from newsproject.user.models import NewsCustom
 # Create your views here.
 
 def home(request):
@@ -13,6 +14,13 @@ def home(request):
         if i > 2:
             break
         i = i+1
+
+    if request.user.is_authenticated:
+        news_customs = NewsCustom.objects.filter(user_info__user=request.user)
+    else:
+        news_customs = None
+
     return render(request, 'home.html', context=({
-        'content': content
+        'content': content,
+        'news_customs': news_customs
     }))
