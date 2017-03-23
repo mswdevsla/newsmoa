@@ -2,7 +2,7 @@
 {% block body %}
     {{ block.super }}
       <div class="container">
-        <ul class="list-inline">
+        <ul class="list-inline list-inline2">
             {% for news_custom in news_customs %}
                 <li>{{ news_custom.news_content.get_section_name }} {{ news_custom.how_many }}</li>
             {% endfor %}

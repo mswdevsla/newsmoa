@@ -20,15 +20,9 @@
     {{ block.super }}
     <div class="container">
         <ul class="list-inline">
-            <li>섹션별</li>
+            <li><a href="{% url 'section_list' %}">섹션별</a></li>
             <li>신문사별</li>
             <li>추천</li>
-        </ul>
-        <ul class="list-inline list-inline2">
-            <li>Primary</li>
-            <li>Success</li>
-            <li>Warning</li>
-            <li>Danger</li>
         </ul>
     </div>
 {% endblock %}
@@ -36,7 +30,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
     <script src="{% static "bootstrap-3.3.2/dist/js/bootstrap.min.js" %}"></script>
     <script src="{% static "bootstrap-3.3.2/dist/js/jasny-bootstrap.min.js" %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

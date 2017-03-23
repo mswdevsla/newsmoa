@@ -1,0 +1,27 @@
+{% extends 'layout/layout.html' %}
+{% block body %}
+    {{ block.super }}
+      <div class="container">
+        <ul class="list-inline list-inline2">
+            {% for news_custom in news_customs %}
+                <li>{{ news_custom.news_content.get_section_name }} {{ news_custom.how_many }}</li>
+            {% endfor %}
+        </ul>
+      </div>
+    {% for article in content %}
+    <div class="container">
+        <div class="container-article">
+            <a class="news_article" href="{{ article.link }}">
+					<div class="article_image">
+						<img src="" width="110" height="75" alt="" onerror="this.src='http://static.news.naver.net/image/news/2016/noimage_220x150.png';">
+					</div>
+					<div class="article_content">
+						<span class="r_news_tit"><strong>{{article.title}}</strong></span>
+						<em class="r_press"><b>조선일보</b></em><span class="r_ico_b r_modify "><b>9분전</b></span>
+					</div>
+				</a>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}
+</html>

@@ -13,3 +13,13 @@ def config(request):
         'sections': sections,
         'NewsContent': NewsContent
     })
+
+def sections(request):
+    sections = NewsContent.objects.all().distinct('news_section')
+    section_list = []
+    for section in sections:
+
+        section_list.append(section.get_section_name)
+
+    print(section_list)
+    return render(request, 'news_component/section_list.html')
