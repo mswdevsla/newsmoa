@@ -46,5 +46,5 @@ body{
     position: relative;
 }
 .form-control{
-    /*display: none;*/
+    display: none;
 }

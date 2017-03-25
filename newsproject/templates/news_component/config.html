@@ -15,57 +15,62 @@
                 <h5>1순위</h5>
             </div>
             <div class="list-inline" id="listInline">
-                <select class="form-control section" style="width:35%" id="sectionArea">
+                <select class="form-control section" style="width:35%" id="sectionArea" name="section1">
                     {% for section in sections %}
                         <option value="{{ section.news_section }}">{{ section.get_section_name }}</option>
                     {% endfor %}
                 </select>
-                <select class="form-control company" style="width:35%" id="companyArea">
+                <select class="form-control company" style="width:35%" id="companyArea" name="company1">
                     {% for company in companys %}
-                        <option>{{ company.get_company_name }}</option>
+                        <option value="{{ company.news_company }}">{{ company.get_company_name }}</option>
                     {% endfor %}
                 </select>
-                <select class="form-control" style="width:20%">
-                    <option>개수</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                <select class="form-control" style="width:20%" name="how_many1">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
                 </select>
             </div>
             <div id="container"></div>
         </div>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-primary">설정 저장</button>
     </form>
-    <br>
-    <br>
-    <button type="button" class="btn btn-primary">설정 저장</button>
-
 
 {% block script %}
    {{ block.super }}
   <script type="text/javascript">
 
-        var section_area = document.getElementById('sectionArea');
-        var company_area = document.getElementById('companyArea');
+{#        var section_area = document.getElementById('sectionArea');#}
+{#        var company_area = document.getElementById('companyArea');#}
         var $list = $('.container');
 
         var number = 1;
+        var max_number = 10;
         var arr_section = [];
+        var arr_company = [];
         {% for section in sections %}
             arr_section.push('{{ section.get_section_name }}');
         {% endfor %}
-        var news_company = ['중앙일보', '동아일보', '한겨레'];
-        var max_number = 10;
+        {% for company in companys %}
+            arr_company.push('{{ company.get_company_name }}');
+        {% endfor %}
 
         var sectionArea = document.querySelector('#sectionArea');
-
 
         function changeField(data, self) {
 
             var $self = $(self),
                 createOption = document.createElement('option'),
                 $companyArea = $self.next();
-
-            console.log($companyArea);
 
             function createOptions(data) {
                 var options = document.createElement('option');
@@ -79,29 +84,29 @@
             for(var prop in data) {
                 if(data[prop].sectionName == sectionArea.value) {
                     //companyArray.push(data[prop].companyName);
-
-                    $companyArea.append( createOptions({ value:1, name:'문선웅'}) );
+                    $companyArea.append( createOptions({ value:data[prop].companyValue, name:data[prop].companyName}) );
                 }
             }
-
         }
-
 
         $list.on('change', 'select.section', function() {
             var data = [];
             {% for content in contents %}
                 data.push({
                     sectionName: '{{ content.news_section }}',
-                    companyName: '{{ content.news_company }}'
+                    companyValue: '{{ content.news_company }}',
+                    companyName: '{{ content.get_company_name }}'
                     });
             {% endfor %}
 
             changeField(data, this);
         });
 
-
-
         function addFields() {
+            if(number >= max_number){
+                alert('기사 설정은 최대 10개 까지 할 수 있습니다');
+                return false;
+            }
             // Number of inputs to create
             // Container <div> where dynamic content will be placed
             var container = document.getElementById("container");
@@ -112,38 +117,40 @@
             var div = document.createElement("div");
             div.className = "list-inline";
             container.appendChild(div);
-            var select = document.createElement("select");
-            select.className = "form-control section";
-            select.style = "width:35%";
-            container.appendChild(select);
+            var section_select = document.createElement("select");
+            section_select.className = "form-control section";
+            section_select.name = "section" + (number + 1);
+            section_select.style = "width:35%";
+            container.appendChild(section_select);
             for (var i = 0; i < arr_section.length; i++) {
                 var option = document.createElement("option");
                 option.text = arr_section[i];
-                select.appendChild(option);
+                section_select.appendChild(option);
             }
-            var select2 = document.createElement("select");
-            select2.className = "form-control company";
-            select2.style = "width:35%";
-            container.appendChild(select2);
-            for (var i = 0; i < news_company.length; i++) {
+            var company_select = document.createElement("select");
+            company_select.className = "form-control company";
+            company_select.name = "company" + (number + 1);
+            company_select.style = "width:35%";
+            container.appendChild(company_select);
+            for (var i = 0; i < arr_company.length; i++) {
                 var option = document.createElement("option");
-                option.text = news_company[i];
-                select2.appendChild(option);
+                option.text = arr_company[i];
+                company_select.appendChild(option);
             }
-            var select3 = document.createElement("select");
-            select3.className = "form-control";
-            select3.style = "width:20%";
-            container.appendChild(select3);
-            for (var i = 0; i < max_number; i++) {
+            var num_select = document.createElement("select");
+            num_select.className = "form-control";
+            num_select.name = "how_many" + (number + 1);
+            num_select.style = "width:20%";
+            container.appendChild(num_select);
+            for (var i = 1; i < max_number; i++) {
                 var option = document.createElement("option");
                 option.text = i;
-                select3.appendChild(option);
+                num_select.appendChild(option);
             }
             // Append a line break
             container.appendChild(document.createElement("br"));
             number++
         }
-
     </script>
 {% endblock %}
 {% endblock %}
