@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from newsproject.news_component.models import NewsContent
 from newsproject.user.models import NewsCustom
+import feedparser
+from html.parser import HTMLParser
 from django.contrib.auth.decorators import login_required
+
 
 # @login_required
 def config(request):
@@ -39,12 +42,95 @@ def config(request):
         'NewsContent': NewsContent
     })
 
-def sections(request):
-    sections = NewsContent.objects.all().distinct('news_section')
-    section_list = []
-    for section in sections:
 
-        section_list.append(section.get_section_name)
+def section_list(request):
+    section = request.GET.get('section')
 
-    print(section_list)
-    return render(request, 'news_component/section_list.html')
+    if not section == None:
+        contents = NewsContent.objects.filter(news_section=section)
+    else:
+        contents = NewsContent.objects.all().distinct('news_section')
+    contents_list = []
+    default_num = 1
+    default_maxnum = 5
+    for content in contents:
+        i = 1
+        feed = feedparser.parse(content.xml_address)
+        for item in feed.entries:
+            item['news_company'] = content.get_company_name
+            item['news_section'] = content.get_section_name
+            parser = MyHTMLParser()
+            parser.feed(item.summary)
+            item['img'] = parser.imgtag
+            parser.close()
+            contents_list.append(item)
+            i = i + 1
+            if i > 1:
+                break
+        default_num = default_num + 1
+        if default_num > default_maxnum:
+            break
+    return render(request, 'news_component/section_list.html', context={
+        'contents_list': contents_list
+    })
+
+
+def section_home(request):
+    section_contents = NewsContent.objects.all().distinct('news_section')
+
+    return render(request, 'news_component/section_home.html', context={
+        'section_contents': section_contents
+    })
+
+
+def company_list(request):
+    company = request.GET.get('company')
+
+    if not company == None:
+        contents = NewsContent.objects.filter(news_company=company)
+    else:
+        contents = NewsContent.objects.all().distinct('news_company')
+    contents_list = []
+    default_num = 1
+    default_maxnum = 5
+    for content in contents:
+        i = 1
+        feed = feedparser.parse(content.xml_address)
+        for item in feed.entries:
+            item['news_company'] = content.get_company_name
+            item['news_section'] = content.get_section_name
+            parser = MyHTMLParser()
+            parser.feed(item.summary)
+            item['img'] = parser.imgtag
+            parser.close()
+            contents_list.append(item)
+            i = i + 1
+            if i > 1:
+                break
+        default_num = default_num + 1
+        if default_num > default_maxnum:
+            break
+    return render(request, 'news_component/company_list.html', context={
+        'contents_list': contents_list
+    })
+
+
+def company_home(request):
+    company_contents = NewsContent.objects.all().distinct('news_company')
+
+    return render(request, 'news_component/company_home.html', context={
+        'company_contents': company_contents
+    })
+
+
+class MyHTMLParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.reset()
+        self.imgtag = ''
+
+    def handle_starttag(self, tag, attrs):
+        if tag.lower() == 'img':
+            for attr in attrs:
+                if attr[0] == 'src':
+                    self.imgtag = attr[1]

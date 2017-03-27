@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import feedparser
 from newsproject.user.models import NewsCustom
+from html.parser import HTMLParser
 # Create your views here.
 
 def home(request):
@@ -10,7 +11,6 @@ def home(request):
     content = []
     for item in feed:
         content.append(item)
-        print(content)
         if i > 2:
             break
         i = i+1
@@ -23,6 +23,11 @@ def home(request):
             feed = feedparser.parse(news_custom.news_content.xml_address)
             for item in feed.entries:
                 item['news_company'] = news_custom.news_content.get_company_name
+                item['news_section'] = news_custom.news_content.get_section_name
+                parser = MyHTMLParser()
+                parser.feed(item.summary)
+                item['img'] = parser.imgtag
+                parser.close()
                 news_contents.append(item)
                 i = i+1
                 if i > news_custom.how_many:
@@ -32,3 +37,15 @@ def home(request):
         'news_customs': news_customs,
         'news_contents': news_contents
     }))
+
+class MyHTMLParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.reset()
+        self.imgtag = ''
+
+    def handle_starttag(self, tag, attrs):
+        if tag.lower() == 'img':
+            for attr in attrs:
+                if attr[0] == 'src':
+                    self.imgtag = attr[1]

@@ -45,6 +45,14 @@ body{
     vertical-align: middle;
     position: relative;
 }
-.form-control{
-    display: none;
+.container_section{
+    padding: 30px 30px 30px 30px;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    float: left;
+}
+.section_name{
+    font-size: 20px;
+    position: relative;
 }

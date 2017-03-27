@@ -20,8 +20,9 @@
     {{ block.super }}
     <div class="container">
         <ul class="list-inline">
-            <li><a href="{% url 'section_list' %}">섹션별</a></li>
-            <li>신문사별</li>
+            <li><a href="{% url 'home' %}">홈</a></li>
+            <li><a href="{% url 'section_home' %}">섹션별</a></li>
+            <li><a href="{% url 'company_home' %}">신문사별</a></li>
             <li>추천</li>
         </ul>
     </div>

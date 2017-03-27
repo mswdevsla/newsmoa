@@ -1,0 +1,15 @@
+{% extends 'layout/layout.html' %}
+{% block body %}
+    {{ block.super }}
+      <div class="container">
+      <h3>섹션별 카테고리</h3>
+      </div>
+    {% for content in section_contents %}
+    <div class="container_section">
+        <a class="news_article" href="{% url 'section_list'%}?section={{ content.news_section }}">
+            <span class="section_name">{{content.get_section_name}}</span>
+        </a>
+    </div>
+    {% endfor %}
+{% endblock %}
+</html>
