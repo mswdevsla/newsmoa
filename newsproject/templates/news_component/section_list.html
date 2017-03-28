@@ -1,29 +1,36 @@
 {% extends 'layout/layout.html' %}
 {% block body %}
     {{ block.super }}
-      <div class="container">
-      <h3>섹션별</h3>
-      </div>
-    {% for content in contents_list %}
-    <div class="container">
-        <div class="container-article">
-            <a class="news_article" href="{{ content.link }}">
-					<div class="article_image">
-                        {% if content.img %}
-						    <img src="{{ content.img }}" width="110" height="75" alt="">
-                        {% else %}
-                            {% load static %}
-						    <img src="{% static 'newsproject/image/donga.png'%}" width="110" height="75" alt="">
-                        {% endif %}
-					</div>
-					<div class="article_content">
-						<span class="r_news_tit"><strong>{{content.title}}</strong></span>
-                        <br><br>
-						<em class="r_press"><b>{{ content.news_company }} - [{{ content.news_section }}]</b></em><span class="r_ico_b r_modify "><b>9분전</b></span>
-					</div>
-				</a>
-        </div>
+    <div class="container list-inline sub_navigation">
+        <h3>섹션별</h3>
     </div>
+    {% for content in contents_list %}
+        <div class="container list">
+            <div class="container-article">
+                <a class="news_article" href="{{ content.link }}">
+                    <div style="overflow:hidden; position:relative;">
+                        <div class="article_image">
+                            {% if content.img %}
+                                <img src="{{ content.img }}" width="110" height="75" alt="">
+                            {% else %}
+                                {% load static %}
+                                <img src="{% static 'newsproject/image/donga.png' %}" width="110" height="75" alt="">
+                            {% endif %}
+                        </div>
+                        <div class="article_content">
+						<span class="r_news_tit">
+                            <strong>{{ content.title }}</strong>
+                        </span>
+                        </div>
+                        <em class="r_press" style="position: absolute; right:0; bottom:0;">
+                            <b style="color: #888; font-family: 맑은고딕">{{ content.news_company }} - [{{ content.news_section }}]</b>
+                            <span class="r_ico_b r_modify "><b>9분전</b></span>
+                        </em>
+
+                    </div>
+                </a>
+            </div>
+        </div>
     {% endfor %}
 {% endblock %}
 </html>

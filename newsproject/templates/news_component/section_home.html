@@ -1,9 +1,10 @@
 {% extends 'layout/layout.html' %}
 {% block body %}
     {{ block.super }}
-      <div class="container">
+      <div class="container list-inline sub_navigation">
       <h3>섹션별 카테고리</h3>
       </div>
+    <div class="index_list">
     {% for content in section_contents %}
     <div class="container_section">
         <a class="news_article" href="{% url 'section_list'%}?section={{ content.news_section }}">
@@ -11,5 +12,6 @@
         </a>
     </div>
     {% endfor %}
+    </div>
 {% endblock %}
 </html>

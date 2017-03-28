@@ -1,11 +1,11 @@
 {% extends 'layout/layout.html' %}
 {% block body %}
     {{ block.super }}
-      <div class="container">
+      <div class="container list-inline sub_navigation">
       <h3>신문사별</h3>
       </div>
     {% for content in contents_list %}
-    <div class="container">
+    <div class="container list">
         <div class="container-article">
             <a class="news_article" href="{{ content.link }}">
 					<div class="article_image">
