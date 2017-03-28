@@ -2,30 +2,40 @@
 {% block body %}
     {{ block.super }}
     <div class="container">
-        <ul class="list-inline list-inline2">
+        <ul class="list-inline sub_navigation">
+            {% if news_customs %}
+                <li><strong>내 설정 </strong></li>
+            {% endif %}
             {% for news_custom in news_customs %}
                 <li>{{ news_custom.news_content.get_section_name }} {{ news_custom.how_many }}</li>
             {% endfor %}
         </ul>
     </div>
     {% for news_content in news_contents %}
-        <div class="container">
+        <div class="container list">
             <div class="container-article">
                 <a class="news_article" href="{{ news_content.link }}">
-                    <div class="article_image">
-                        {% if news_content.img %}
-                            <img src="{{ news_content.img }}" width="110" height="75" alt="">
-                        {% else %}
-                            {% load static %}
-                            <img src="{% static 'newsproject/image/donga.png' %}" width="110" height="75" alt="">
-                        {% endif %}
+                    <div style="overflow:hidden; position:relative;">
+                        <div class="article_image">
+                            {% if news_content.img %}
+                                <img src="{{ news_content.img }}" width="110" height="75" alt="">
+                            {% else %}
+                                {% load static %}
+                                <img src="{% static 'newsproject/image/donga.png' %}" width="110" height="75" alt="">
+                            {% endif %}
+                        </div>
+                        <div class="article_content">
+                            <span class="r_news_tit">
+                                <strong style="font-family: 돋움체; color: #000">{{ news_content.title }}</strong></span>
+                        </div>
+                        <em class="r_press" style="position: absolute; right:0; bottom:0;">
+                            <b style="color: #888; font-family: 맑은고딕">{{ news_content.news_company }} -
+                                [{{ news_content.news_section }}]</b>
+                            <span class="r_ico_b r_modify "><b>9분전</b></span>
+                        </em>
+
                     </div>
-                    <div class="article_content">
-                        <span class="r_news_tit"><strong>{{ news_content.title }}</strong></span>
-                        <br><br>
-                        <em class="r_press"><b>{{ news_content.news_company }} - [{{ news_content.news_section }}]</b></em><span
-                            class="r_ico_b r_modify "><b>9분전</b></span>
-                    </div>
+
                 </a>
             </div>
         </div>
