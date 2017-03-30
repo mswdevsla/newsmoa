@@ -21,7 +21,7 @@
                                 <img src="{{ news_content.img }}" width="110" height="75" alt="">
                             {% else %}
                                 {% load static %}
-                                <img src="{% static 'newsproject/image/donga.png' %}" width="110" height="75" alt="">
+                                <img src="{% static news_content.news_image %}" width="110" height="75" alt="">
                             {% endif %}
                         </div>
                         <div class="article_content">

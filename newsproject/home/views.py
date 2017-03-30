@@ -15,6 +15,7 @@ def home(request):
             for item in feed.entries:
                 item['news_company'] = news_custom.news_content.get_company_name
                 item['news_section'] = news_custom.news_content.get_section_name
+                item['news_image'] = 'newsproject/image/news_company' + str(news_custom.news_content.news_company) + '.png'
                 parser = MyHTMLParser()
                 parser.feed(item.summary)
                 item['img'] = parser.imgtag

@@ -59,6 +59,7 @@ def section_list(request):
         for item in feed.entries:
             item['news_company'] = content.get_company_name
             item['news_section'] = content.get_section_name
+            item['news_image'] = 'newsproject/image/news_company' + str(content.news_company) + '.png'
             parser = MyHTMLParser()
             parser.feed(item.summary)
             item['img'] = parser.imgtag
@@ -99,6 +100,7 @@ def company_list(request):
         for item in feed.entries:
             item['news_company'] = content.get_company_name
             item['news_section'] = content.get_section_name
+            item['news_image'] = 'newsproject/image/news_company' + str(content.news_company) + '.png'
             parser = MyHTMLParser()
             parser.feed(item.summary)
             item['img'] = parser.imgtag
