@@ -12,6 +12,11 @@ def config(request):
     contents = NewsContent.objects.all()
     companys = contents.distinct('news_company')
     sections = contents.distinct('news_section')
+
+    my_news = NewsCustom.objects.filter(user_info__user=request.user).order_by('priority')
+    loop_times = {}
+    loop_times['loop_times'] = range(1, 11)
+
     if request.method == 'POST':
         for i in range(1, 11):
             if not request.POST.get('section' + str(i)) == None and not request.POST.get('company' + str(i)) == None and not request.POST.get('how_many' + str(i)) == None:
@@ -39,7 +44,9 @@ def config(request):
         'contents': contents,
         'companys': companys,
         'sections': sections,
-        'NewsContent': NewsContent
+        'NewsContent': NewsContent,
+        'my_news': my_news,
+        'loop_times': loop_times['loop_times']
     })
 
 
@@ -61,7 +68,11 @@ def section_list(request):
             item['news_section'] = content.get_section_name
             item['news_image'] = 'newsproject/image/news_company' + str(content.news_company) + '.png'
             parser = MyHTMLParser()
-            parser.feed(item.summary)
+            try:
+                parser.feed(item.summary)
+            except:
+                pass
+
             item['img'] = parser.imgtag
             parser.close()
             contents_list.append(item)
