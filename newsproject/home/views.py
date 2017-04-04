@@ -18,10 +18,10 @@ def home(request):
                 item['news_image'] = 'newsproject/image/news_company' + str(news_custom.news_content.news_company) + '.png'
                 parser = MyHTMLParser()
                 parser.feed(item.summary)
-                item['img'] = parser.imgtag
-                print(item.published)
-                from datetime import datetime
-                print(datetime.strptime(item.published, '%a %d %b %Y: %H:%M:%S %z'))
+                # item['img'] = parser.imgtag
+                # print(item.published)
+                # from datetime import datetime
+                # print(datetime.strptime(item.published, '%a %d %b %Y: %H:%M:%S %z'))
                 parser.close()
                 news_contents.append(item)
                 i = i+1
