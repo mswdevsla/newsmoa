@@ -15,14 +15,20 @@
 .nav_sidebar {
     position: absolute;
     z-index: 10;
-    left: -20%;
+    left: -30%;
     top: 0;
     bottom: 0;
-    width: 20%;
+    width: 30%;
     transition: left 0.5s ease;
     background: #ededed;
     border-right: 1px solid #b2b2b2;
     box-shadow: inset -3px 0px 10px #bababa;
+}
+
+.nav_sidebar .username {
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0 10px;
 }
 
 .nav_sidebar__function {
@@ -103,5 +109,5 @@ body.is_open_sidemenu .nav_sidebar {
 }
 
 body.is_open_sidemenu .body_container {
-    left: 20%;
+    left: 30%;
 }

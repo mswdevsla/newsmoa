@@ -5,7 +5,7 @@
     {% if news_customs %}
     <div class="list_mymenu">
 
-        <h2 class="list_mymenu__headline">내 설정</h2>
+        <h2 class="sentence__headline">내 설정</h2>
         <ul class="list_mymenu__list">
             {% for news_custom in news_customs %}
                 <li>{{ news_custom.news_content.get_section_name }} {{ news_custom.how_many }}</li>
@@ -30,10 +30,9 @@
                         <img src="{% static news_content.news_image %}" width="110" height="75" alt="">
                     {% endif %}
                 </span>
-            {{ news_content.news_image }}
 
                 <span class="list_container__list__link__content">
-                    <span class="title"><strong style="font-family: 돋움체; color: #000">{{ news_content.title }}</strong></span>
+                    <span class="title"><strong>{{ news_content.title }}</strong></span>
 
                     <span class="crumbs">
                         <span class="date">{{ news_content.news_company }} - [{{ news_content.news_section }}]</span>

@@ -1,106 +1,240 @@
 @charset "utf-8";
 
-
-* { margin:0; padding:0; border:none; -webkit-tap-highlight-color: rgba(0,0,0,0.0);  }
-html,body {
-	height:100%; width:100%; background-color:white; color:#666;
-	font-family:"Malgun Gothic", "AppleSDGothic", "굴림", "Gulim", "Arial";
-	-webkit-text-size-adjust: none;
-	font-size:12px;
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.0);
 }
 
-section, article, aside, hgroup, header, footer, nav, figure { display:block; }
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    color: #666;
+    font-family: "Malgun Gothic", "AppleSDGothic", "굴림", "Gulim", "Arial";
+    -webkit-text-size-adjust: none;
+    font-size: 12px;
+}
 
-h1,h2,h3,h4,h5 { font-weight:normal; }
-table { border-collapse:collapse; }
+section, article, aside, hgroup, header, footer, nav, figure {
+    display: block;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: normal;
+}
+
+table {
+    border-collapse: collapse;
+}
+
 a,
 a:hover,
 a:visited,
 a:active,
-a:link { color:#666; }
-button { color:#666; cursor:pointer; background:transparent; }
-button::-moz-focus-inner {border: 0;padding: 0;}
+a:link {
+    color: #666;
+}
 
-a { text-decoration:none; }
-a:hover { text-decoration:underline; }
+button {
+    color: #666;
+    cursor: pointer;
+    background: transparent;
+}
 
-a:focus,button:focus{outline:0;}
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
 
-ul { margin:0; padding:0; }
-li { list-style:none; }
-legend,caption, .hidden {position:absolute; left:-9999px; width:0; height:0; line-height:0; font-size:0;}
-fieldset { border:none; }
-em,address { font-style:normal; }
-img { vertical-align:top; }
-input,textarea { border:0; background:none; padding:3px 5px 2px 5px; vertical-align:top; }
-textarea{resize:none;}
-hr { display:none; }
-input[type="search"] { -webkit-appearance:textfield; box-sizing:content-box; }
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:focus, button:focus {
+    outline: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+legend, caption, .hidden {
+    position: absolute;
+    left: -9999px;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+}
+
+fieldset {
+    border: none;
+}
+
+em, address {
+    font-style: normal;
+}
+
+img {
+    vertical-align: top;
+}
+
+input, textarea {
+    border: 0;
+    background: none;
+    padding: 3px 5px 2px 5px;
+    vertical-align: top;
+}
+
+textarea {
+    resize: none;
+}
+
+hr {
+    display: none;
+}
+
+input[type="search"] {
+    -webkit-appearance: textfield;
+    box-sizing: content-box;
+}
+
 input[type="password"],
-input[type="text"] { border:0; background:#e8e5df; line-height:24px; height:24px; padding:0 7px; }
-input[type="image"] { padding:0; }
-strong {  font-weight: bold; color: #666666;; }
-.clearfix:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }
-label { cursor:pointer; }
+input[type="text"] {
+    border: 0;
+    background: #e8e5df;
+    line-height: 24px;
+    height: 24px;
+    padding: 0 7px;
+}
 
-.fr { float:right; }
+input[type="image"] {
+    padding: 0;
+}
 
-.txt_l { text-align:left !important; }
-.txt_r { text-align:right !important; }
-.txt_c { text-align:center !important; }
+strong {
+    font-weight: bold;
+    color: #666666;;
+}
 
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+label {
+    cursor: pointer;
+}
+
+.fr {
+    float: right;
+}
+
+.txt_l {
+    text-align: left !important;
+}
+
+.txt_r {
+    text-align: right !important;
+}
+
+.txt_c {
+    text-align: center !important;
+}
 
 /*
 	기능성 공통 css
 */
 
-
 /*
 	Radiobox, Checkbox 디자인 : ie8 이하 버전 적용 안됨.
 */
-input[type="checkbox"],input[type="radio"] { position:absolute; opacity:0; }
+input[type="checkbox"], input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
 input[type="checkbox"] + label::before,
 input[type="radio"] + label::before {
-    content:""; display:inline-block;
-    vertical-align:top; background-repeat:no-repeat; background-position:left top;
+    content: "";
+    display: inline-block;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-position: left top;
 }
-input[type="checkbox"] + label::before { margin:-2px 9px 0 0; }
-input[type="radio"] + label::before { margin:1px 9px 0 0; }
 
-input[type="checkbox"] + label { cursor:pointer; vertical-align:top; }
-input[type="checkbox"] + label:before { width:17px; height:17px; background-image:url('../images/common/checkbox.png'); }
-
-input[type="checkbox"]:not(:checked):hover + label:before { /*background-position:0 -13px;*/ }
-input[type="checkbox"]:checked + label:before { background-position:0 -17px; }
-input[type="checkbox"]:focus + label { outline: dotted 1px; }
-input[type="checkbox"]:disabled + label { border:1px dotted gray; }
-
-input[type="radio"] + label { cursor:pointer; vertical-align:top; color:#61480b; }
-input[type="radio"] + label:before { width:11px; height:11px; background-image:url('../images/common/radiobox.png'); }
-input[type="radio"]:hover + label:before { /*background-position: -13px -13px;*/ }
-input[type="radio"]:checked + label:before { background-position: left -11px; }
-input[type="radio"]:focus + label { outline: dotted 1px; }
-input[type="radio"]:disabled + label { border:1px dotted gray; }
-
-
-.d-selector { position:relative; z-index:9999; }
-.d-selector .wrapper { border:0; display:inline-block; position:relative; background:#e8e5df; text-align:left; }
-.d-selector .wrapper.focus { border:0; }
-.d-selector .wrapper input[type=button] {
-	font-size:12px; display:block; width:100%; /*outline:2px solid #74f3de; */text-align:left;  cursor:pointer;
-	padding:0 25px 0 10px; line-height:24px; height:24px; color:#61480b;
-	background:url('../images/common/bg_d-selector_01.gif') no-repeat right 7px;
+input[type="checkbox"] + label::before {
+    margin: -2px 9px 0 0;
 }
-.d-selector input[type="radio"] + label::before { display:none; }
 
-.d-selector ul { position:absolute; left:-1px; top:24px; z-index:10; background:white; border-left:1px solid #cecece; border-bottom:1px solid #cecece; border-right:1px solid #cecece; z-index:20; padding:0; }
-.d-selector li { position:relative; padding:0 25px 0 10px; line-height:24px; height:24px; }
-.d-selector li.select { background:#666; color:white; }
-.d-selector li.select input[type="radio"] + label { color:white; }
+input[type="radio"] + label::before {
+    margin: 1px 9px 0 0;
+}
 
-.d-selector li.hover { background:#666; color:white; }
+input[type="checkbox"] + label {
+    cursor: pointer;
+    vertical-align: top;
+}
 
+input[type="checkbox"] + label:before {
+    width: 17px;
+    height: 17px;
+    background-image: url('../images/common/checkbox.png');
+}
 
-.d-selector label { display:block; white-space:nowrap; }
-.d-selector label.focus { background:blue; }
+input[type="checkbox"]:not(:checked):hover + label:before { /*background-position:0 -13px;*/
+}
 
+input[type="checkbox"]:checked + label:before {
+    background-position: 0 -17px;
+}
+
+input[type="checkbox"]:focus + label {
+    outline: dotted 1px;
+}
+
+input[type="checkbox"]:disabled + label {
+    border: 1px dotted gray;
+}
+
+input[type="radio"] + label {
+    cursor: pointer;
+    vertical-align: top;
+    color: #61480b;
+}
+
+input[type="radio"] + label:before {
+    width: 11px;
+    height: 11px;
+    background-image: url('../images/common/radiobox.png');
+}
+
+input[type="radio"]:hover + label:before { /*background-position: -13px -13px;*/
+}
+
+input[type="radio"]:checked + label:before {
+    background-position: left -11px;
+}
+
+input[type="radio"]:focus + label {
+    outline: dotted 1px;
+}
+
+input[type="radio"]:disabled + label {
+    border: 1px dotted gray;
+}

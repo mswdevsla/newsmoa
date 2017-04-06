@@ -9,7 +9,7 @@
     <nav id="navSidebar" class="nav_sidebar">
 
         {% if request.user.is_authenticated %}
-            <p>{{ request.user }}님 반갑습니다</p>
+            <p class="username"><strong>{{ request.user }}</strong>님,<br/>반갑습니다</p>
         {% endif %}
         <ul class="nav_sidebar__function">
             <li class="active">{% if request.user.is_authenticated %}
@@ -41,17 +41,7 @@
                 {#            <li style="color: #6f5499;">공지사항</li>#}
             </ul>
 
-            <div class="navbar">
-                <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-
-            </div>
         </div>
-
         <div class="body_container__contentarea">
             {% block body_content %}
             {% endblock %}
