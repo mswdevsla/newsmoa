@@ -1,17 +1,25 @@
 {% extends 'layout/layout.html' %}
 {% block body_content %}
     {{ block.super }}
-    <div class="container list-inline sub_navigation">
-        <h3 style="text-align: center;">신문사별 카테고리</h3>
+
+    <div class="list_mymenu">
+
+        <h2 class="sentence__headline">신문사별 카테고리</h2>
+
     </div>
+
     <div class="container list-inline">
+
+        <div class="company_group_list">
         {% for content in company_contents %}
-            <div class="container_section">
-                <a class="news_article" href="{% url 'company_list' %}?company={{ content.news_company }}">
-                    <span class="section_name">{{ content.get_company_name }}</span>
+            <div class="company_group_list__section">
+                <a class="link" href="{% url 'company_list' %}?company={{ content.news_company }}">
+                    <span class="image"><img src="http://nstatic.jtbc.joins.com/images/common/h1_logo.png" alt="" /></span>
+                    <span class="name">{{ content.get_company_name }}</span>
                 </a>
             </div>
         {% endfor %}
+        </div>
     </div>
 {% endblock %}
 </html>

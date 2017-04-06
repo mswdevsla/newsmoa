@@ -1,9 +1,12 @@
 {% extends 'layout/layout.html' %}
 {% block body_content %}
     {{ block.super }}
-      <div class="container list-inline sub_navigation">
-      <h3 style="text-align: center;">섹션별 카테고리</h3>
-      </div>
+    <div class="list_mymenu">
+
+        <h2 class="sentence__headline">섹션별 카테고리</h2>
+
+    </div>
+
     <div class="container list-inline">
     {% for content in section_contents %}
     <div class="container_section">

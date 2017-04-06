@@ -1,23 +1,28 @@
 {% extends 'layout/layout.html' %}
 {% block body_content %}
     {{ block.super }}
+    <div class="list_mymenu">
 
+        <h2 class="sentence__headline">로그인</h2>
+
+    </div>
     <div class="sign_form sign_in">
 
         <form class="sign_form__form" method="post">
             {% csrf_token %}
-            <h2 class="sign_form__form__headline">로그인</h2>
 
             <div class="sign_form__form__section">
 
                 <div class="row">
                     <label for="inputId" class="label">아이디</label>
-                    <input type="text" id="inputId" name="user_id" class="field" placeholder="Id" required="" autofocus="" />
+                    <input type="text" id="inputId" name="user_id" class="field" placeholder="Id" required=""
+                           autofocus=""/>
                 </div>
 
                 <div class="row">
                     <label for="inputPassword" class="label">Password</label>
-                    <input type="password" id="inputPassword" name="user_password" class="field" placeholder="Password" required="">
+                    <input type="password" id="inputPassword" name="user_password" class="field" placeholder="Password"
+                           required="">
                 </div>
 
             </div>

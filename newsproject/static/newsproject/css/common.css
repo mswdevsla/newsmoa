@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+.container {
+    padding:20px 10px 20px;
+}
+.styled-select {
+    display: inline-block;
+}
+
+.styled-select select {
+    background: #f0ad4e url(http://i62.tinypic.com/15xvbd5.png) no-repeat 88% 0;
+    border: none;
+    font-size: 14px;
+    height: 29px;
+    padding: 5px 25px 5px 5px; /* If you add too much padding here, the options won't show in IE */
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.sentence__headline {
+    font-size: 16px;
+    font-weight: bold;
+    color:#000;
+    margin:0 0 10px;
+    padding:20px 10px 10px;
+    border-bottom: 1px solid #dedede;
+}
+
+.sentence__headline__second {
+    font-size: 14px;
+    font-weight: bold;
+    color:#000;
+    margin:20px 10px 10px;
+}
+
+button {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #337ab7;
+    border: 1px solid #2e6da4;
+}
+
