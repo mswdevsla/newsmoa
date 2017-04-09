@@ -2,25 +2,38 @@
 {% block body_content %}
     {{ block.super }}
 
-    {% if news_customs %}
-    <div class="list_mymenu">
+    {% if request.user.is_authenticated and news_customs %}
+        <div class="list_mymenu">
 
-        <h2 class="sentence__headline">내 설정</h2>
-        <ul class="list_mymenu__list">
-            {% for news_custom in news_customs %}
-                <li>{{ news_custom.news_content.get_section_name }} {{ news_custom.how_many }}</li>
-            {% endfor %}
-        </ul>
+            <h2 class="sentence__headline">내 설정</h2>
+            <ul class="list_mymenu__list">
+                {% for news_custom in news_customs %}
+                    <li>{{ news_custom.news_content.get_section_name }} {{ news_custom.how_many }}</li>
+                {% endfor %}
+            </ul>
 
-    </div>
+        </div>
+    {% elif request.user.is_authenticated %}
+        <div class="list_mymenu">
+            <h3 class="sentence_notification">
+                설정을 통해 나만의 기사 목록을 만들 수 있습니다.<br><br>
+                지금 노출되는 기사들은 랜덤으로 나오는 기사입니다.
+            </h3>
+        </div>
+    {% else %}
+         <div class="list_mymenu">
+            <h3 class="sentence_notification">
+                로그인을 통해 나만의 기사 목록을 만들 수 있습니다.<br><br>
+                지금 노출되는 기사들은 랜덤으로 나오는 기사입니다.
+            </h3>
+        </div>
     {% endif %}
-
     <div class="list_container">
-    {% for news_content in news_contents %}
+        {% for news_content in news_contents %}
 
-        <div class="list_container__list">
+            <div class="list_container__list">
 
-            <a class="list_container__list__link" href="{{ news_content.link }}">
+                <a class="list_container__list__link" href="{{ news_content.link }}">
 
                 <span class="list_container__list__link__image">
                     {% if news_content.img %}
@@ -31,7 +44,7 @@
                     {% endif %}
                 </span>
 
-                <span class="list_container__list__link__content">
+                    <span class="list_container__list__link__content">
                     <span class="title"><strong>{{ news_content.title }}</strong></span>
 
                     <span class="crumbs">
@@ -40,10 +53,10 @@
                     </span>
                 </span>
 
-            </a>
+                </a>
 
-        </div>
-    {% endfor %}
+            </div>
+        {% endfor %}
     </div>
 
 

@@ -9,7 +9,7 @@
 
     <form method="post">
         {% csrf_token %}
-        <div class="container">
+        <div class="container" id="container">
             <button type="button" class="btn btn-primary" onClick="addFields();">추가</button>
             {% if my_news %}
                 {% for my_news in my_news %}
@@ -18,7 +18,7 @@
                     </div>
                     <div class="list-inline styled-select" id="listInline">
 
-                        <select class="form-control section" id="sectionArea" name="section">
+                        <select class="form-control section" id="sectionArea{{ my_news.priority }}" name="section{{ my_news.priority }}">
                             {% for section in sections %}
                                 {% if my_news.news_content.news_section == section.news_section %}
                                     <option value="{{ section.news_section }}"
@@ -28,7 +28,7 @@
                                 {% endif %}
                             {% endfor %}
                         </select>
-                        <select class="form-control company" id="companyArea" name="company1">
+                        <select class="form-control company" id="companyArea{{ my_news.priority }}" name="company{{ my_news.priority }}">
                             {% for company in companys %}
                                 {% if my_news.news_content.news_company == company.news_company %}
                                     <option value="{{ company.news_company }}"
@@ -38,7 +38,7 @@
                                 {% endif %}
                             {% endfor %}
                         </select>
-                        <select class="form-control" name="how_many1">
+                        <select class="form-control" name="how_many{{ my_news.priority }}">
                             {% for i in loop_times %}
                                 {% if my_news.how_many == i %}
                                     <option value="{{ i }}" selected>{{ i }}</option>
@@ -52,15 +52,17 @@
                 {% endfor %}
             {% else %}
                 <div class="list-rank">
-                    <h5>1순위</h5>
+                    <h5 class="sentence__headline__second">1순위</h5>
                 </div>
-                <div class="list-inline" id="listInline">
-                    <select class="form-control section" style="width:35%" id="sectionArea" name="section1">
+
+                <div class="list-inline styled-select" id="listInline">
+
+                    <select class="form-control section" style="width:35%" id="sectionArea1" name="section1">
                         {% for section in sections %}
                             <option value="{{ section.news_section }}">{{ section.get_section_name }}</option>
                         {% endfor %}
                     </select>
-                    <select class="form-control company" style="width:35%" id="companyArea" name="company1">
+                    <select class="form-control company" style="width:35%" id="companyArea1" name="company1">
                         {% for company in companys %}
                             <option value="{{ company.news_company }}">{{ company.get_company_name }}</option>
                         {% endfor %}
@@ -72,7 +74,8 @@
                     </select>
                 </div>
             {% endif %}
-            <br/><br/>
+        </div>
+        <div class="container">
             <button type="submit" class="btn btn-primary">설정 저장</button>
         </div>
     </form>
@@ -84,28 +87,26 @@
     {{ block.super }}
     <script type="text/javascript">
 
-        {#        var section_area = document.getElementById('sectionArea');#}
-        {#        var company_area = document.getElementById('companyArea');#}
         var $list = $('.container');
-
-        var number = {{ my_news_count }} + 1;
+        var number = 1;
+        {% if my_news_count > 0 %}
+            number = {{ my_news_count }};
+        {% endif %}
         var max_number = 10;
-        var arr_section = [];
+        var arr_section = [{}];
         var arr_company = [];
         {% for section in sections %}
-            arr_section.push('{{ section.get_section_name }}');
+            arr_section.push({'name':' {{ section.get_section_name }}', 'value': '{{ section.news_section }}' });
         {% endfor %}
         {% for company in companys %}
             arr_company.push('{{ company.get_company_name }}');
         {% endfor %}
 
-        var sectionArea = document.querySelector('#sectionArea');
-
         function changeField(data, self) {
 
             var $self = $(self),
-                createOption = document.createElement('option'),
-                $companyArea = $self.next();
+                    createOption = document.createElement('option'),
+                    $companyArea = $self.next();
 
             function createOptions(data) {
                 var options = document.createElement('option');
@@ -115,10 +116,11 @@
             }
 
             $companyArea.html('');
+            var section_id = "#sectionArea" + number;
+            var sectionArea = document.querySelector(section_id);
 
             for (var prop in data) {
-                if (data[prop].sectionName == sectionArea.value) {
-                    //companyArray.push(data[prop].companyName);
+                if (data[prop].sectionValue == sectionArea.value) {
                     $companyArea.append(createOptions({
                         value: data[prop].companyValue,
                         name: data[prop].companyName
@@ -131,7 +133,8 @@
             var data = [];
             {% for content in contents %}
                 data.push({
-                    sectionName: '{{ content.news_section }}',
+                    sectionValue: '{{ content.news_section }}',
+                    sectionName: '{{ content.get_section_name }}',
                     companyValue: '{{ content.news_company }}',
                     companyName: '{{ content.get_company_name }}'
                 });
@@ -149,24 +152,34 @@
             // Container <div> where dynamic content will be placed
             var container = document.getElementById("container");
             // Append a node with a random text
-            container.appendChild(document.createTextNode((number + 1) + "순위"));
+            var priority_div = document.createElement("div");
+            priority_div.className = "list-rank";
+            var priority_h5 = document.createElement("h5");
+            priority_h5.className = "sentence__headline__second";
+            priority_h5.appendChild(document.createTextNode((number + 1) + "순위"));
+            priority_div.appendChild(priority_h5);
+            container.appendChild(priority_div);
             // Create an <input> element, set its type and name attributes
 
             var div = document.createElement("div");
             div.className = "list-inline styled-select";
+            div.id = "listInline";
             container.appendChild(div);
             var section_select = document.createElement("select");
             section_select.className = "form-control section";
             section_select.name = "section" + (number + 1);
+            section_select.id =  "sectionArea" + (number+1);
             div.appendChild(section_select);
-            for (var i = 0; i < arr_section.length; i++) {
+            for (var i = 1; i < arr_section.length; i++) {
                 var option = document.createElement("option");
-                option.text = arr_section[i];
+                option.text = arr_section[i].name;
+                option.value = arr_section[i].value;
                 section_select.appendChild(option);
             }
             var company_select = document.createElement("select");
             company_select.className = "form-control company";
             company_select.name = "company" + (number + 1);
+            company_select.id = "companyArea" + (number + 1);
             div.appendChild(company_select);
             for (var i = 0; i < arr_company.length; i++) {
                 var option = document.createElement("option");

@@ -24,7 +24,6 @@ def config(request):
                 news_section = request.POST.get('section' + str(i))
                 news_company = request.POST.get('company' + str(i))
                 how_many = request.POST.get('how_many' + str(i))
-
                 try:
                     news_content = NewsContent.objects.get(news_section=news_section, news_company=news_company)
                 except:
@@ -36,10 +35,10 @@ def config(request):
                     news_custom.news_company = news_company
                     news_custom.how_many = how_many
                     news_custom.save()
-
-                except:
-                    NewsCustom.objects.create(user_info__user=request.user, news_content=news_content, how_many=how_many,
-                                              priority=i)
+                except NewsCustom.DoesNotExist:
+                    NewsCustom.objects.create(user_info=request.user.user_info, news_content=news_content, how_many=how_many, priority=i)
+        from django.http import HttpResponseRedirect
+        return HttpResponseRedirect('/news_component/config')
 
     return render(request, 'news_component/config.html', context={
         'contents': contents,

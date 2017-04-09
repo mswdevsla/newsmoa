@@ -8,8 +8,8 @@ from html.parser import HTMLParser
 
 def home(request):
     news_contents = []
-    if request.user.is_authenticated:
-        news_customs = NewsCustom.objects.filter(user_info__user=request.user).order_by('priority')
+    news_customs = NewsCustom.objects.filter(user_info__user=request.user).order_by('priority')
+    if request.user.is_authenticated and news_customs.count() > 0:
         for news_custom in news_customs:
             i = 1
             feed = feedparser.parse(news_custom.news_content.xml_address)
