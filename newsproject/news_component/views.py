@@ -14,6 +14,7 @@ def config(request):
     sections = contents.distinct('news_section')
 
     my_news = NewsCustom.objects.filter(user_info__user=request.user).order_by('priority')
+    my_news_count = my_news.count()
     loop_times = {}
     loop_times['loop_times'] = range(1, 11)
 
@@ -46,6 +47,7 @@ def config(request):
         'sections': sections,
         'NewsContent': NewsContent,
         'my_news': my_news,
+        'my_news_count': my_news_count,
         'loop_times': loop_times['loop_times']
     })
 

@@ -7,14 +7,17 @@
 
     </div>
 
-    <div class="container list-inline">
-    {% for content in section_contents %}
-    <div class="container_section">
-        <a class="news_article" href="{% url 'section_list'%}?section={{ content.news_section }}">
-            <span class="section_name">{{content.get_section_name}}</span>
-        </a>
-    </div>
-    {% endfor %}
+  <div class="container list-inline">
+
+        <div class="company_group_list">
+        {% for section in section_contents %}
+            <div class="company_group_list__section">
+                <a class="link" href="{% url 'section_list' %}?company={{ section.news_section }}">
+                    <span class="name">{{ section.get_section_name }}</span>
+                </a>
+            </div>
+        {% endfor %}
+        </div>
     </div>
 {% endblock %}
 </html>

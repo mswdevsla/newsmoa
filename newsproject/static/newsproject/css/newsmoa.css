@@ -21,7 +21,7 @@
 
 .list_container__list__link__image {
     display: table-cell;
-    vertical-align: top;
+    vertical-align: middle;
     width: 30%;
 }
 
@@ -50,6 +50,7 @@
 .list_container__list__link__content .crumbs {
     display: block;
     font-size: 14px;
+    padding: 5px 0 0 0;
 }
 
 .sign_form {
@@ -107,9 +108,9 @@
 
 .company_group_list__section {
     display: inline-block;
-    width: 30%;
+    width: 28%;
     min-height: 60px;
-    margin:0 0 0 10px;
+    margin:10px 0 0 10px;
     vertical-align: top;
 }
 

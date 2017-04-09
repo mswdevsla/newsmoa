@@ -6,26 +6,37 @@
         <h2 class="sentence__headline">신문사별</h2>
 
     </div>
-    {% for content in contents_list %}
-    <div class="container list">
-        <div class="container-article">
-            <a class="news_article" href="{{ content.link }}">
-					<div class="article_image">
-                        {% if content.img %}
-						    <img src="{{ content.img }}" width="110" height="75" alt="">
-                        {% else %}
-                            {% load static %}
-						    <img src="{% static content.news_image %}" width="110" height="75" alt="">
-                        {% endif %}
-					</div>
-					<div class="article_content">
-						<span class="r_news_tit"><strong>{{content.title}}</strong></span>
-                        <br><br>
-						<em class="r_press"><b>{{ content.news_company }} - [{{ content.news_section }}]</b></em><span class="r_ico_b r_modify "><b>9분전</b></span>
-					</div>
-				</a>
-        </div>
+
+    <div class="list_container">
+        {% for content in contents_list %}
+
+            <div class="list_container__list">
+
+                <a class="list_container__list__link" href="{{ content.link }}">
+
+                <span class="list_container__list__link__image">
+                    {% if content.img %}
+                        <img src="{{ content.img }}" width="110" height="75" alt="">
+                    {% else %}
+                        {% load static %}
+                        <img src="{% static content.news_image %}" width="110" height="75" alt="">
+                    {% endif %}
+                </span>
+
+                    <span class="list_container__list__link__content">
+                    <span class="title"><strong>{{ content.title }}</strong></span>
+
+                    <span class="crumbs">
+                        <span class="date">{{ content.news_company }} - [{{ content.news_section }}]</span>
+                        <span class="time"><b>9분전</b></span>
+                    </span>
+                </span>
+
+                </a>
+
+            </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+
 {% endblock %}
 </html>

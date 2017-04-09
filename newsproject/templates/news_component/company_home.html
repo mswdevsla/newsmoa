@@ -14,7 +14,6 @@
         {% for content in company_contents %}
             <div class="company_group_list__section">
                 <a class="link" href="{% url 'company_list' %}?company={{ content.news_company }}">
-                    <span class="image"><img src="http://nstatic.jtbc.joins.com/images/common/h1_logo.png" alt="" /></span>
                     <span class="name">{{ content.get_company_name }}</span>
                 </a>
             </div>
