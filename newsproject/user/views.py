@@ -8,11 +8,24 @@ from newsproject.user.models import UserInfo
 def register(request):
     if request.method == 'POST':
         if request.POST.get('password') == request.POST.get('re_password'):
+            print(1)
             email = request.POST.get('email')
             id = request.POST.get('id')
             password = request.POST.get('password')
+            try:
+                User.objects.get(username=id)
+                return HttpResponse('<script>alert("이미 존재하는 아이디입니다"); history.back();</script>')
+            except User.DoesNotExist:
+                pass
+            try:
+                User.objects.get(email=email)
+                return HttpResponse('<script>alert("이미 존재하는 이메일입니다"); history.back();</script>')
+            except User.DoesNotExist:
+                pass
+
             user = User.objects.create_user(username=id, email=email, password=password)
             UserInfo.objects.create(user=user, email=email)
+            print(1)
             return HttpResponseRedirect('/')
     return render(request, 'user/register.html')
 

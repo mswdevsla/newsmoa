@@ -6,7 +6,7 @@ from html.parser import HTMLParser
 from django.contrib.auth.decorators import login_required
 
 
-# @login_required
+@login_required
 def config(request):
     from django.http import HttpResponse
     contents = NewsContent.objects.all()
@@ -63,24 +63,22 @@ def section_list(request):
     default_num = 1
     default_maxnum = 5
     for content in contents:
-        i = 1
+        i = 0
         feed = feedparser.parse(content.xml_address)
         for item in feed.entries:
+            if i > 0:
+                break
             item['news_company'] = content.get_company_name
             item['news_section'] = content.get_section_name
             item['news_image'] = 'newsproject/image/news_company' + str(content.news_company) + '.png'
             parser = MyHTMLParser()
-            try:
+            if hasattr(item, 'summary'):
                 parser.feed(item.summary)
-            except:
-                pass
-
-            item['img'] = parser.imgtag
+                item['img'] = parser.imgtag
             parser.close()
             contents_list.append(item)
             i = i + 1
-            if i > 1:
-                break
+
         default_num = default_num + 1
         if default_num > default_maxnum:
             break
@@ -108,20 +106,22 @@ def company_list(request):
     default_num = 1
     default_maxnum = 5
     for content in contents:
-        i = 1
+        i = 0
         feed = feedparser.parse(content.xml_address)
         for item in feed.entries:
+            if i > 0:
+                break
             item['news_company'] = content.get_company_name
             item['news_section'] = content.get_section_name
             item['news_image'] = 'newsproject/image/news_company' + str(content.news_company) + '.png'
             parser = MyHTMLParser()
-            parser.feed(item.summary)
-            item['img'] = parser.imgtag
+            if hasattr(item, 'summary'):
+                parser.feed(item.summary)
+                item['img'] = parser.imgtag
             parser.close()
             contents_list.append(item)
             i = i + 1
-            if i > 1:
-                break
+
         default_num = default_num + 1
         if default_num > default_maxnum:
             break
