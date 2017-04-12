@@ -1,7 +1,7 @@
 # newsmoa
 this webservice to serve news article is possible to customize 
 
-web-page = http://moonsunwoong.com
+web-page = http://harunews.com
 
 개인 프로젝트겸 이용할겸 만든 페이지입니다.
 
