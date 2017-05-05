@@ -7,3 +7,7 @@ def notification(request):
 
 def user_board(request):
     return render(request, 'news_board/user_board.html', context={})
+
+def board_write(request):
+
+    return render(request, 'news_board/board_write.html', context={})
