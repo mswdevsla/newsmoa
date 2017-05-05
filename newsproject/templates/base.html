@@ -12,7 +12,7 @@
         <meta name="naver-site-verification" content="eadfcc5e52381567b76c5161839b1d2f629719fb"/>
     {% endblock %}
 
-    <link rel="icon" href="../../favicon.ico" />
+    <link rel="icon" href="../../favicon.ico"/>
 
     <!-- Custom styles for this template -->
     <link href="{% static "newsproject/css/newsmoa.css" %}" rel="stylesheet">
@@ -32,6 +32,24 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-98600645-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
 </head>
 <body>
 
@@ -39,16 +57,6 @@
 {% endblock %}
 
 {% block script %}
-    <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-98600645-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 {% endblock %}
 
 </body>
