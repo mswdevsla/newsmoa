@@ -21,6 +21,8 @@ def config(request):
     if request.method == 'POST':
         for i in range(1, 11):
             if not request.POST.get('section' + str(i)) == None and not request.POST.get('company' + str(i)) == None and not request.POST.get('how_many' + str(i)) == None:
+                print(request.POST.get('section' + str(i)))
+                print(request.POST.get('company' + str(i)))
                 news_section = request.POST.get('section' + str(i))
                 news_company = request.POST.get('company' + str(i))
                 how_many = request.POST.get('how_many' + str(i))
@@ -56,6 +58,7 @@ def section_list(request):
 
     if not section == None:
         contents = NewsContent.objects.filter(news_section=section)
+        print(contents)
     else:
         contents = NewsContent.objects.all().distinct('news_section')
     contents_list = []

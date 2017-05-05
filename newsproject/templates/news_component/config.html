@@ -94,12 +94,12 @@
         {% endif %}
         var max_number = 10;
         var arr_section = [{}];
-        var arr_company = [];
+        var arr_company = [{}];
         {% for section in sections %}
             arr_section.push({'name':' {{ section.get_section_name }}', 'value': '{{ section.news_section }}' });
         {% endfor %}
         {% for company in companys %}
-            arr_company.push('{{ company.get_company_name }}');
+            arr_company.push({'name':' {{ company.get_company_name }}', 'value': '{{ company.news_company }}' });
         {% endfor %}
 
         function changeField(data, self) {
@@ -181,9 +181,10 @@
             company_select.name = "company" + (number + 1);
             company_select.id = "companyArea" + (number + 1);
             div.appendChild(company_select);
-            for (var i = 0; i < arr_company.length; i++) {
+            for (var i = 1; i < arr_company.length; i++) {
                 var option = document.createElement("option");
-                option.text = arr_company[i];
+                option.text = arr_company[i].name;
+                option.value = arr_company[i].value;
                 company_select.appendChild(option);
             }
             var num_select = document.createElement("select");
