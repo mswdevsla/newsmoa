@@ -66,3 +66,62 @@ button {
     border: 1px solid #2e6da4;
 }
 
+.board_notification_group {
+    /*width:400px;*/
+    border: 1px solid #424242;
+    margin:0 auto;
+    /*height:600px;*/
+}
+.board_notification_group__top{
+    position: relative;
+    height:50px;
+    border-bottom:1px solid #424242;
+}
+.Top>*{
+    float:left;
+}
+.Top>a{
+    border:1px solid red;
+    border-radius: 8px;
+    padding:4px 12px;
+    font-size:12px;
+    margin-top:10px;
+}
+.Top>a:first-child{
+    border-color: #939393;
+    color:#939393;
+    margin-left:10px;
+}
+.Top>a:last-child{
+    float:right;
+    color:red;
+    margin-right:10px;
+}
+.Top>h3{
+    display: block;
+    text-align: center;
+    width:100%;
+    position: absolute;
+    top:5px;
+}
+div.wrap>.ConBox>div{
+    padding:10px 0;
+    border-bottom:1px solid #c5c3c3;
+    text-indent:18px;
+}
+.board_group__border{
+    border-bottom: 2px solid #f5f5f5;
+    padding: 10px 20px 15px 20px;
+}
+.board_group__title{
+    font-weight: bold;
+    display: inline;
+}
+.board_group__write{
+    color: red;
+    padding: 5px;
+    border:1px solid red;
+    border-radius: 10em 10em 10em 10em;
+    float: right;
+    display: inline;
+}

@@ -1,4 +1,8 @@
 {% extends 'layout/layout.html' %}
 {% block body_content %}
-
+    {{ block.super }}
+    <div class="board_group__border">
+        <h2 class="board_group__title">< 공지사항</h2>
+        <button class="board_group__write" onclick="javascript">글쓰기</button>
+    </div>  
 {% endblock %}
