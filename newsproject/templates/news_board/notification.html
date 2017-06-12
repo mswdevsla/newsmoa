@@ -2,7 +2,22 @@
 {% block body_content %}
     {{ block.super }}
     <div class="board_group__border">
-        <h2 class="board_group__title">< 공지사항</h2>
+        <i class="fa fa-check-circle" aria-hidden="true" style="font-size: 20px;"></i><h2 class="board_group__title">공지사항</h2>
         <button class="board_group__write" onclick="javascript">글쓰기</button>
-    </div>  
+    </div>
+    {% for news_board in news_boards %}
+        <div class="board_group__border">
+            <a href="{% url 'board_view' board_id=news_board.id %}">
+                <h2 class="board_title">{{ news_board.title }}</h2>
+                <div class="board_writer">
+                    <span>{{ news_board.user_info.user_account }} </span>
+                    <span>|  {{ news_board.created_at | date:"Y-m-d"}} </span>
+                </div>
+            </a>
+        </div>
+        <div class="board_group__writer">
+
+        </div>
+    {% endfor %}
+
 {% endblock %}

@@ -21,5 +21,5 @@ class NewsBoard(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=256)
     content = models.TextField()
-    user_info = models.OneToOneField(UserInfo, null=True, on_delete=models.SET_NULL, related_name='user_info')
+    user_info = models.ForeignKey(UserInfo, null=True, on_delete=models.SET_NULL, related_name='user_info')
     mode = models.IntegerField(choices=CHOICES_BOARD)

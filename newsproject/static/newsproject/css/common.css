@@ -116,6 +116,7 @@ div.wrap>.ConBox>div{
 .board_group__title{
     font-weight: bold;
     display: inline;
+    padding-left:10px;
 }
 .board_group__write{
     color: red;
@@ -124,4 +125,11 @@ div.wrap>.ConBox>div{
     border-radius: 10em 10em 10em 10em;
     float: right;
     display: inline;
+}
+.board_title{
+    display: inline;
+    font-weight: bold;
+}
+.board_writer{
+    padding-top: 10px;
 }
