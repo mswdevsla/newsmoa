@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'layout/layout.html' %}
+{% block body_content %}
+    {{ block.super }}
+    <div class="board_view__group">
+        <h2 class="board_view__title">{{ board.title }}</h2>
+        <div class="board_writer">
+            <span class="board_writer__author">{{ board.user_info.user_account }} </span>
+            <span>|</span>
+            <span class="board_writer__date">{{ board.created_at | date:"Y-m-d" }} </span>
+            <span>|</span>
+            <span class="board_writer__date">{{ board.view_count }} </span>
+        </div>
+        <div class="board_btn__grouup">
+            {% if board.mode == 1 %}
+                <a href="{% url 'news_notification' %}" class="btn_info__list">목록으로</a>
+            {% elif board.mode == 2 %}
+                <a href="{% url 'news_userboard' %}" class="btn_info__list">목록으로</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="board_view__content">
+    {% load static %}
+        <img class="board_view__img" src="{% static 'newsproject/image/logo_haru_white.png'  %}" alt="하루 뉴스">
+        <p class="board_view__detail_content">{{ board.content }}</p>
+    </div>
 
-</body>
-</html>
+{% endblock %}

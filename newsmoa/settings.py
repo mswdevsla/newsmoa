@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'newsproject',
     'newsproject.news_component',
-    'newsproject.user'
+    'newsproject.user',
+    'newsproject.news_board'
 ]
 
 MIDDLEWARE = [
@@ -82,7 +83,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': '10.0.3.30',
+        'HOST': '192.168.5.128',
         'PORT': '',
     }
 }
