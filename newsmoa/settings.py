@@ -84,10 +84,6 @@ DATABASES = {
         'USER': 'msw123123',
         'PASSWORD': 'tkdfhrtn1',
         'HOST': 'rds-postgresql-10mintutorial.cuwc1xqd50bu.ap-northeast-2.rds.amazonaws.com',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': '192.168.5.128',
         'PORT': '',
     }
 }
