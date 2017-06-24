@@ -25,7 +25,7 @@ SECRET_KEY = 't_uy&$s&-+gehko0^sn$=fp*j1px)ovt8o-4qylsl*-&u^5#)6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['harunews.com']
 
 
 # Application definition
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'newsproject',
     'newsproject.news_component',
-    'newsproject.user'
+    'newsproject.user',
+    'newsproject.news_board'
 ]
 
 MIDDLEWARE = [
@@ -79,10 +80,10 @@ WSGI_APPLICATION = 'newsmoa.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': '10.0.3.30',
+        'NAME': 'newsmoa',
+        'USER': 'msw123123',
+        'PASSWORD': 'tkdfhrtn1',
+        'HOST': 'rds-postgresql-10mintutorial.cuwc1xqd50bu.ap-northeast-2.rds.amazonaws.com',
         'PORT': '',
     }
 }
