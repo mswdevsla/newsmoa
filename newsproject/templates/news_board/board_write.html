@@ -1,14 +1,26 @@
 {% extends 'layout/layout.html' %}
 {% block body_content %}
     {{ block.super }}
-    <div class="board_group__border">
-        <a href="{% url 'news_notification' %}" class="board_group__cancel">목록으로</a>
-        <div class="board_group__write_title">
-            <h2 style="font-weight: bold;">글쓰기</h2>
+    <form method="post">
+        <div class="board_group__border">
+            {% if mode == 1 %}
+                <a href="{% url 'news_notification' %}" class="board_group__cancel">목록으로</a>
+            {% elif mode == 2 %}
+                <a href="{% url 'news_userboard' %}" class="board_group__cancel">목록으로</a>
+            {% endif %}
+            <div class="board_group__write_title">
+                <h2 style="font-weight: bold;">글쓰기</h2>
+            </div>
+            <input type="submit" class="board_group__write_ok" value="등록하기">
         </div>
-        <a href="{% url 'board_write' %}"><p class="board_group__write_ok">등록하기</p></a>
-    </div>
-    <div class="board_group__write_body">
-        <textarea class="write_text" placeholder="내용"></textarea>
-    </div>
+
+        {% csrf_token %}
+        <input type="hidden" name="mode" value="{{ mode }}">
+        <div class="board_group__write_body">
+            <input type="text" name="title" placeholder="제목"
+                   style="background-color: white; border: 1px solid; border-color: #e6e6e6; width: 80%;">
+            <textarea class="write_text" placeholder="내용" name="content"
+                      style="border: 1px solid; border-color: #e6e6e6; margin-top: 5px;"></textarea>
+        </div>
+    </form>
 {% endblock %}

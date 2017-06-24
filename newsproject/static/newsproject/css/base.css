@@ -239,12 +239,17 @@ input[type="radio"]:disabled + label {
     border: 1px dotted gray;
 }
 
+.list_mymenu__list{
+    width: 95%;
+}
+
 .list_mymenu__list li {
     display: table-cell;
-    width: 28%;
+    width: 22%;
     padding: 0 0 7px 8px;
     /*border-left: 1px solid #b9b9b9;*/
     /*background: linear-gradient(#e9e9e9, #dadada);*/
     text-align: center;
     font-size:13px;
+    float: left;
 }
