@@ -139,10 +139,6 @@
 .board_writer__date{
     padding: 0 10px 10px 10px;
 }
-.board_group__write{
-    color:red;
-    /*padding-bottom: 15px;*/
-}
 .board_view__title{
     padding: 10px 0 10px 20px;
     font-weight: bold;
@@ -175,4 +171,35 @@
 }
 .board_view__detail_content{
     padding: 10px;
+}
+.board_group__write_title{
+    width: 60%;
+    text-align: center;
+    display: inline-block;
+    /*float: left;*/
+}
+.board_group__cancel{
+    padding: 5px;
+    border:1px solid;
+    border-radius: 10em 10em 10em 10em;
+    float: left;
+    display: inline-block;
+}
+.board_group__write_ok{
+    color: red;
+    padding: 5px;
+    border:1px solid red;
+    border-radius: 10em 10em 10em 10em;
+    float: right;
+    display: inline-block;
+}
+.board_group__write_body{
+    margin: 10px;
+    /*border: 1px solid blue;*/
+
+    background-color: white;
+}
+.write_text{
+    height: 200px;
+    width: 95%;
 }

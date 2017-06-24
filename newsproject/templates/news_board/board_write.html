@@ -1,5 +1,14 @@
 {% extends 'layout/layout.html' %}
 {% block body_content %}
     {{ block.super }}
-    
+    <div class="board_group__border">
+        <a href="{% url 'news_notification' %}" class="board_group__cancel">목록으로</a>
+        <div class="board_group__write_title">
+            <h2 style="font-weight: bold;">글쓰기</h2>
+        </div>
+        <a href="{% url 'board_write' %}"><p class="board_group__write_ok">등록하기</p></a>
+    </div>
+    <div class="board_group__write_body">
+        <textarea class="write_text" placeholder="내용"></textarea>
+    </div>
 {% endblock %}
