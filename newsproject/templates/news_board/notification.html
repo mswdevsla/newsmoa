@@ -1,4 +1,25 @@
 {% extends 'layout/layout.html' %}
 {% block body_content %}
+    {{ block.super }}
+    <div class="board_group__border">
+        <i class="fa fa-check-circle" aria-hidden="true" style="font-size: 20px;"></i><h2 class="board_group__title">공지사항</h2>
+        <a href="{% url 'board_write' %}"><p class="board_group__write" >글쓰기</p></a>
+    </div>
+    {% for news_board in news_boards %}
+        <div class="board_group__border">
+            <a href="{% url 'board_view' board_id=news_board.id %}">
+                <h2 class="board_title">{{ news_board.title }}</h2>
+                <div class="board_writer">
+
+                    <span class="board_writer__author">{{ news_board.user_info.user_account }} </span>
+                    <span>|</span>
+                    <span class="board_writer__date">{{ news_board.created_at | date:"Y-m-d"}} </span>
+                </div>
+            </a>
+        </div>
+        <div class="board_group__writer">
+
+        </div>
+    {% endfor %}
 
 {% endblock %}

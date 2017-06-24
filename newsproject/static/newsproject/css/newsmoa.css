@@ -133,3 +133,46 @@
     background:rgba(9,15,81,0.7);
     color:#fff;
 }
+.board_writer__author{
+    padding: 0 10px 10px 10px;
+}
+.board_writer__date{
+    padding: 0 10px 10px 10px;
+}
+.board_group__write{
+    color:red;
+    /*padding-bottom: 15px;*/
+}
+.board_view__title{
+    padding: 10px 0 10px 20px;
+    font-weight: bold;
+}
+.board_view__group{
+    background-color: #fbfbfb;
+    padding: 10px;
+}
+.board_view__content{
+    padding: 10px;
+    font-size: 15px;
+}
+.board_btn__grouup{
+    margin: 30px 0 15px 10px;
+}
+.btn_info__list{
+    padding: 8px;
+    border:1px solid;
+    border-radius: 10em 10em 10em 10em;
+    background-color: white;
+    font-size: 15px;
+    /*display: inline;*/
+}
+.board_view__content{
+    padding: 10px;
+}
+.board_view__img{
+    padding-top: 15px;
+    width: 350px;
+}
+.board_view__detail_content{
+    padding: 10px;
+}
