@@ -4,7 +4,7 @@
     <div class="board_group__border">
         <i class="fa fa-check-circle" aria-hidden="true" style="font-size: 20px;"></i>
         <h2 class="board_group__title">공지사항</h2>
-        {% if request.user.is_admin_user %}
+        {% if request.user.user_info.is_admin_user %}
             <a href="{% url 'board_write' %}?mode={{ mode }}"><p class="board_group__write">글쓰기</p></a>
         {% endif %}
     </div>
