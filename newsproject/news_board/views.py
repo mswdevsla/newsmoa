@@ -29,6 +29,9 @@ def board_write(request):
             title = request.POST.get('title')
             content = request.POST.get('content')
             mode = int(request.POST.get('mode'))
+            if mode == 1 and not request.user.user_info.is_admin_user:
+                from django.http import HttpResponse
+                return HttpResponse('<script>alert("접근 권한이 없습니다."); history.back();</script>')
             NewsBoard.objects.create(title=title, content=content, user_info=request.user.user_info, mode=mode)
             redirect_url = '/'
             if mode == 1:
