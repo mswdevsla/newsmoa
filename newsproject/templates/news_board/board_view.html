@@ -4,7 +4,7 @@
     <div class="board_view__group">
         <h2 class="board_view__title">{{ board.title }}</h2>
         <div class="board_writer">
-            <span class="board_writer__author">{{ board.user_info.user_account }} </span>
+            <span class="board_writer__author">{{ board.user_info.user.username }} </span>
             <span>|</span>
             <span class="board_writer__date">{{ board.created_at | date:"Y-m-d" }} </span>
             <span>|</span>

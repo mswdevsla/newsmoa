@@ -13,7 +13,7 @@
             <a href="{% url 'board_view' board_id=news_board.id %}">
                 <h2 class="board_title">{{ news_board.title }}</h2>
                 <div class="board_writer">
-                    <span class="board_writer__author">{{ news_board.user_info.user_account }} </span>
+                    <span class="board_writer__author">{{ news_board.user_info.user.username }} </span>
                     <span>|</span>
                     <span class="board_writer__date">{{ news_board.created_at | date:"Y-m-d" }} </span>
                 </div>
