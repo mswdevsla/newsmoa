@@ -15,6 +15,12 @@ def home(request):
             i = 1
             feed = feedparser.parse(news_custom.news_content.xml_address)
             for item in feed.entries:
+                from datetime import datetime
+                from time import mktime
+                if hasattr(item, 'published_parsed'):
+                    item['published_datetime'] = datetime.fromtimestamp(mktime(item['published_parsed']))
+                elif hasattr(item, 'updated_parsed'):
+                    item['published_datetime'] = datetime.fromtimestamp(mktime(item['updated_parsed']))
                 item['news_company'] = news_custom.news_content.get_company_name
                 item['news_section'] = news_custom.news_content.get_section_name
                 item['news_image'] = 'newsproject/image/news_company' + str(news_custom.news_content.news_company) + '.png'
@@ -46,6 +52,9 @@ def home(request):
                     for item in feed:
                         if number > 0:
                             break
+                        from datetime import datetime
+                        from time import mktime
+                        item['published_datetime'] = datetime.fromtimestamp(mktime(item['published_parsed']))
                         item['news_company'] = random_content.get_company_name
                         item['news_section'] = random_content.get_section_name
                         item['news_image'] = 'newsproject/image/news_company' + str(
@@ -75,11 +84,11 @@ def home(request):
                 feed = feed.entries
                 number = 0
                 for item in feed:
+                    if number > 0:
+                        break
                     from datetime import datetime
                     from time import mktime
                     item['published_datetime'] = datetime.fromtimestamp(mktime(item['published_parsed']))
-                    if number > 0:
-                        break
                     item['news_company'] = random_content.get_company_name
                     item['news_section'] = random_content.get_section_name
                     item['news_image'] = 'newsproject/image/news_company' + str(random_content.news_company) + '.png'
