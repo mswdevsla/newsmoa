@@ -2,8 +2,11 @@
 {% block body_content %}
     {{ block.super }}
     <div class="board_group__border">
-        <i class="fa fa-check-circle" aria-hidden="true" style="font-size: 20px;"></i><h2 class="board_group__title">공지사항</h2>
-        <a href="{% url 'board_write' %}?mode={{ mode }}"><p class="board_group__write" >글쓰기</p></a>
+        <i class="fa fa-check-circle" aria-hidden="true" style="font-size: 20px;"></i>
+        <h2 class="board_group__title">공지사항</h2>
+        {% if request.user.is_admin_user %}
+            <a href="{% url 'board_write' %}?mode={{ mode }}"><p class="board_group__write">글쓰기</p></a>
+        {% endif %}
     </div>
     {% for news_board in news_boards %}
         <div class="board_group__border">
@@ -13,7 +16,7 @@
 
                     <span class="board_writer__author">{{ news_board.user_info.user_account }} </span>
                     <span>|</span>
-                    <span class="board_writer__date">{{ news_board.created_at | date:"Y-m-d"}} </span>
+                    <span class="board_writer__date">{{ news_board.created_at | date:"Y-m-d" }} </span>
                 </div>
             </a>
         </div>
