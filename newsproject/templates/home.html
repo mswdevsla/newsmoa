@@ -51,7 +51,7 @@
 
                     <span class="crumbs">
                         <span class="date">{{ news_content.news_company }} - [{{ news_content.news_section }}]</span>
-                        <span class="time"><b>9분전</b></span>
+                        <span class="time"><b style="line-height: 0.9em;">{{ news_content.published_datetime|date:'m-d H:m'}}</b></span>
                     </span>
                 </span>
 
