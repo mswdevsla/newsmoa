@@ -21,7 +21,7 @@
     <div class="board_view__content">
     {% load static %}
         <img class="board_view__img" src="{% static 'newsproject/image/logo_haru_white.png'  %}" alt="하루 뉴스">
-        <p class="board_view__detail_content">{{ board.content }}</p>
+        <p class="board_view__detail_content">{{ board.content | linebreaks }}</p>
     </div>
 
 {% endblock %}
