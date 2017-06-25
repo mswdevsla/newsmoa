@@ -25,17 +25,21 @@ def board_write(request):
     if request.GET.get('mode'):
         mode = int(request.GET.get('mode'))
     if request.method == 'POST':
-        title = request.POST.get('title')
-        content = request.POST.get('content')
-        mode = int(request.POST.get('mode'))
-        NewsBoard.objects.create(title=title, content=content, user_info=request.user.user_info, mode=mode)
-        redirect_url = '/'
-        if mode == 1:
-            redirect_url = '/news_board/notification'
-        elif mode == 2:
-            redirect_url = '/news_board/user_board'
-        from django.http import HttpResponseRedirect
-        return HttpResponseRedirect(redirect_url)
+        if request.POST.get('title') and request.POST.get('content') and request.POST.get('mode'):
+            title = request.POST.get('title')
+            content = request.POST.get('content')
+            mode = int(request.POST.get('mode'))
+            NewsBoard.objects.create(title=title, content=content, user_info=request.user.user_info, mode=mode)
+            redirect_url = '/'
+            if mode == 1:
+                redirect_url = '/news_board/notification'
+            elif mode == 2:
+                redirect_url = '/news_board/user_board'
+            from django.http import HttpResponseRedirect
+            return HttpResponseRedirect(redirect_url)
+        else:
+            from django.http import HttpResponse
+            return HttpResponse('<script>alert("모든 값이 채워지지 않았습니다"); history.back();</script>')
 
     return render(request, 'news_board/board_write.html', context={
         'mode': mode
