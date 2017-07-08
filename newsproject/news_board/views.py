@@ -20,6 +20,16 @@ def user_board(request):
         'mode': mode
     })
 
+
+def bitcoin(request):
+    news_boards = NewsBoard.objects.filter(mode=3).order_by('-id')
+    mode = 3
+    return render(request, 'news_board/bitcoin.html', context={
+        'news_boards': news_boards,
+        'mode': mode
+    })
+
+
 @login_required
 def board_write(request):
     if request.GET.get('mode'):
