@@ -3,11 +3,7 @@
     {{ block.super }}
     <form method="post">
         <div class="board_group__border">
-            {% if mode == 1 %}
-                <a href="{% url 'news_notification' %}" class="board_group__cancel">목록으로</a>
-            {% elif mode == 2 %}
-                <a href="{% url 'news_userboard' %}" class="board_group__cancel">목록으로</a>
-            {% endif %}
+                <a href="{{ previous_url }}" class="board_group__cancel">목록으로</a>
             <div class="board_group__write_title">
                 <h2 style="font-weight: bold;">글쓰기</h2>
             </div>
@@ -17,6 +13,11 @@
         {% csrf_token %}
         <input type="hidden" name="mode" value="{{ mode }}">
         <div class="board_group__write_body">
+            <select name="mode">
+                {% for category in board_category %}
+                    <option value="{{ category.0 }}">{{ category.1 }}</option>
+                {% endfor %}
+            </select>
             <input type="text" name="title" placeholder="제목"
                    style="background-color: white; border: 1px solid; border-color: #e6e6e6; width: 80%;">
             <textarea class="write_text" placeholder="내용" name="content"

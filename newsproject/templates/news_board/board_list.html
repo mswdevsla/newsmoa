@@ -3,9 +3,9 @@
     {{ block.super }}
     <div class="board_group__border">
         <i class="fa fa-check-circle" aria-hidden="true" style="font-size: 20px;"></i>
-        <h2 class="board_group__title">공지사항</h2>
+        <h2 class="board_group__title">{{ title_str }}</h2>
         {% if request.user.user_info.is_admin_user %}
-            <a href="{% url 'board_write' %}?mode={{ mode }}"><p class="board_group__write">글쓰기</p></a>
+            <a href="{% url 'board_write' %}"><p class="board_group__write">글쓰기</p></a>
         {% endif %}
     </div>
     {% for news_board in news_boards %}
@@ -17,6 +17,8 @@
                     <span class="board_writer__author">{{ news_board.user_info.user.username }} </span>
                     <span>|</span>
                     <span class="board_writer__date">{{ news_board.created_at | date:"Y-m-d" }} </span>
+                    <span>|</span>
+                    <span class="board_writer__author">조회수 {{ news_board.view_count }} </span>
                 </div>
             </a>
         </div>

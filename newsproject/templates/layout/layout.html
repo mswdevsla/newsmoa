@@ -16,12 +16,12 @@
                 <a href="{% url 'user_logout' %}">로그아웃</a>{% else %}<a href="{% url 'user_login' %}">로그인</a>{% endif %}
             </li>
             {% if not request.user.is_authenticated %}
-            <li><a href="{% url 'user_register' %}">회원가입</a></li>
+                <li><a href="{% url 'user_register' %}">회원가입</a></li>
             {% endif %}
-            <li><a href="{% url 'news_notification' %}">공지사항</a></li>
-            <li><a href="{% url 'news_userboard' %}">자유게시판</a></li>
             <li><a href="{% url 'news_config' %}">설정</a></li>
-            <li><a href="{% url 'news_bitcoin' %}">About 비트코인</a></li>
+            <li><a href="{% url 'board_list' %}?mode=1">공지사항</a></li>
+            <li><a href="{% url 'board_list' %}?mode=2">자유게시판</a></li>
+            <li><a href="{% url 'board_list' %}?mode=3">About 비트코인</a></li>
         </ul>
 
     </nav>
@@ -35,7 +35,8 @@
                     <span class="hamburger-inner"></span>
                 </span>
             </button>
-            <a class="logo" href="{% url "home" %}"><img src="{% static 'newsproject/image/logo_haru_white.png' %}" alt="하루 뉴스" /></a>
+            <a class="logo" href="{% url "home" %}"><img src="{% static 'newsproject/image/logo_haru_white.png' %}"
+                                                         alt="하루 뉴스"/></a>
 
             <ul class="menu_section">
                 <li><a href="{% url 'home' %}">홈</a></li>
@@ -61,13 +62,13 @@
     <script type="text/javascript" src="{% static 'newsproject/js/jquery-3.2.0.min.js' %}"></script>
     <script type="text/javascript">
 
-        $(function() {
+        $(function () {
 
             var $body = $('body'),
-                $navSidebarButton = $("#navSidebarButton");
+                    $navSidebarButton = $("#navSidebarButton");
 
             function sideMenuHandler() {
-                if($body.hasClass('is_open_sidemenu')) {
+                if ($body.hasClass('is_open_sidemenu')) {
                     $body.removeClass('is_open_sidemenu');
                     $navSidebarButton.removeClass('is-active');
                 } else {

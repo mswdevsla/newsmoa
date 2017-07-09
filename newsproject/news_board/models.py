@@ -26,4 +26,4 @@ class NewsBoard(models.Model):
     content = models.TextField()
     user_info = models.ForeignKey(UserInfo, null=True, on_delete=models.SET_NULL, related_name='user_info')
     mode = models.IntegerField(choices=CHOICES_BOARD)
-    view_count = models.IntegerField(default=0, null=True)
+    view_count = models.IntegerField(default=0)

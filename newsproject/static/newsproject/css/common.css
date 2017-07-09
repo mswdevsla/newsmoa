@@ -126,6 +126,15 @@ div.wrap>.ConBox>div{
     float: right;
     display: inline;
 }
+.board_group__modify{
+    color: red;
+    padding: 8px;
+    border:1px solid red;
+    border-radius: 10em 10em 10em 10em;
+    float: right;
+    /*display: block;*/
+    font-size: 15px;
+}
 .board_title{
     display: inline;
     font-weight: bold;

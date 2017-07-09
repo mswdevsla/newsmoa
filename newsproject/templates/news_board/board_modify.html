@@ -1,0 +1,27 @@
+{% extends 'layout/layout.html' %}
+{% block body_content %}
+    {{ block.super }}
+    <form method="post">
+        <div class="board_group__border">
+                <a href="{% url 'board_list' %}?mode={{ board.mode }} }" class="board_group__cancel">목록으로</a>
+            <div class="board_group__write_title">
+                <h2 style="font-weight: bold;">글쓰기</h2>
+            </div>
+            <input type="submit" class="board_group__write_ok" value="등록하기">
+        </div>
+
+        {% csrf_token %}
+        <div class="board_group__write_body">
+            <select name="mode">
+                {% for category in board_category %}
+                    <option value="{{ category.0 }}"
+                    {% if category.0 == board.mode %} selected="selected"{% endif %}>{{ category.1 }}</option>
+                {% endfor %}
+            </select>
+            <input type="text" name="title" placeholder="제목" value="{{ board.title }}"
+                   style="background-color: white; border: 1px solid; border-color: #e6e6e6; width: 80%;">
+            <textarea class="write_text" placeholder="내용" name="content"
+                      style="border: 1px solid; border-color: #e6e6e6; margin-top: 5px;">{{ board.content | safe }}</textarea>
+        </div>
+    </form>
+{% endblock %}
